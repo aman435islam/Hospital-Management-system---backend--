@@ -107,7 +107,9 @@ public class AppointmentController  {
     public ResponseEntity<Appointment> updateEmployee(@PathVariable(value = "id") int appointmentId,
          @Validated @RequestBody Appointment appointmentDetails) {
     	Appointment appointment = appointmentDAO.getAppointmentById(appointmentId);
-    	appointment.setStatus(1);
+    	//appointment.setStatus(1);
+    	appointment.setStatus(appointmentDetails.getStatus()); // ✅ এখন status client থেকে নেবে
+
 
     	
         final Appointment updatedPatient = appointmentDAO.update(appointment);

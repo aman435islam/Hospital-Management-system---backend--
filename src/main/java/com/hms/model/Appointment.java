@@ -21,18 +21,6 @@ public class Appointment {
 	private int appointmentCode;
 
 	
-	
-	@Column(name = "created_by_code")
-	private String createdByCode;
-
-	@Column(name = "created_by_name")
-	private String createdByName;
-
-	@Column(name = "created_at")
-	private Date createdAt;
-
-	
-	
 	@Column(name = "patient_id")
 	private int patientId;
 	
@@ -52,7 +40,7 @@ public class Appointment {
 	private String doctorName;
 
 	@Column(name = "date")
-	private Date date;
+	private String date;
 
 	@Column(name = "department")
 	private String department;
@@ -64,12 +52,21 @@ public class Appointment {
 	private String madicleHistry;
 
 	@Column(name = "bookingDate")
-	private Date bookingDate;
+	private String bookingDate;
 
 	@Column(name = "paymentStatus")
 	private String paymentStatus;
 
 	
+
+	@Column(name = "created_by_code")
+	private String createdByCode;
+
+	@Column(name = "created_by_name")
+	private String createdByName;
+
+	@Column(name = "created_at")
+	private Date createdAt;
 	
 	@Column(name = "updated_by_code")
 	private String updatedByCode;
@@ -80,8 +77,6 @@ public class Appointment {
 	@Column(name = "updated_at")
 	private Date updatedAt;
 
-	
-	
 	public long getId() {
 		return id;
 	}
@@ -96,30 +91,6 @@ public class Appointment {
 
 	public void setAppointmentCode(int appointmentCode) {
 		this.appointmentCode = appointmentCode;
-	}
-
-	public String getCreatedByCode() {
-		return createdByCode;
-	}
-
-	public void setCreatedByCode(String createdByCode) {
-		this.createdByCode = createdByCode;
-	}
-
-	public String getCreatedByName() {
-		return createdByName;
-	}
-
-	public void setCreatedByName(String createdByName) {
-		this.createdByName = createdByName;
-	}
-
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
 	}
 
 	public int getPatientId() {
@@ -170,11 +141,11 @@ public class Appointment {
 		this.doctorName = doctorName;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
@@ -202,11 +173,11 @@ public class Appointment {
 		this.madicleHistry = madicleHistry;
 	}
 
-	public Date getBookingDate() {
+	public String getBookingDate() {
 		return bookingDate;
 	}
 
-	public void setBookingDate(Date bookingDate) {
+	public void setBookingDate(String bookingDate) {
 		this.bookingDate = bookingDate;
 	}
 
@@ -216,6 +187,30 @@ public class Appointment {
 
 	public void setPaymentStatus(String paymentStatus) {
 		this.paymentStatus = paymentStatus;
+	}
+
+	public String getCreatedByCode() {
+		return createdByCode;
+	}
+
+	public void setCreatedByCode(String createdByCode) {
+		this.createdByCode = createdByCode;
+	}
+
+	public String getCreatedByName() {
+		return createdByName;
+	}
+
+	public void setCreatedByName(String createdByName) {
+		this.createdByName = createdByName;
+	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 
 	public String getUpdatedByCode() {

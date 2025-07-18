@@ -46,43 +46,64 @@ public class PatientController  {
     private PatientDAO patientDAO;
 
     @GetMapping("/patient")
-    public List<Patient> getAllEmployees() {
+    public List<Patient> getAllPatient() {
         return patientDAO.getAll();
     }
 
     @GetMapping("/patient/{id}")
-    public ResponseEntity<Patient> getEmployeeById(@PathVariable(value = "id") int employeeId) {
+    public ResponseEntity<Patient> getById(@PathVariable(value = "id") long employeeId) {
     	Patient patient = patientDAO.getPatientById(employeeId);
         return ResponseEntity.ok().body(patient);
     }
 
     @PostMapping("/patient")
-    public Patient createEmployee(@RequestBody Patient patient) {
+    public Patient save(@RequestBody Patient patient) {
         return patientDAO.save(patient);
     }
 
-    @PutMapping("/patient/{id}")
-    public ResponseEntity<Patient> updateEmployee(@PathVariable(value = "id") int patientId,
+//    @PutMapping("/update/{id}")
+//    public ResponseEntity<Patient> update(@PathVariable(value = "id") int patientId,
+//         @Validated @RequestBody Patient patientDetails) {
+//    	Patient patient = patientDAO.getPatientById(patientId);
+//    	patient.setPatientCode(patientDetails.getPatientCode());
+//    	patient.setPatientName(patientDetails.getPatientName());
+//    	patient.setVisitAmount(patientDetails.getVisitAmount());
+//    	patient.setAge(patientDetails.getAge());
+//    	patient.setDob(patientDetails.getDob());
+//    	patient.setGender(patientDetails.getGender());
+//    	patient.setPhone(patientDetails.getPhone());
+//    	patient.setLastVisit(patientDetails.getLastVisit());
+//    
+//    	
+//    	
+//    	
+//    	
+//        final Patient updatedPatient = patientDAO.save(patient);
+//        return ResponseEntity.ok(updatedPatient);
+//    }
+    
+    
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Patient> update(@PathVariable(value = "id") long patientId,
          @Validated @RequestBody Patient patientDetails) {
-    	Patient patient = patientDAO.getPatientById(patientId);
-    	patient.setPatientCode(patientDetails.getPatientCode());
-    	patient.setPatientName(patientDetails.getPatientName());
-    	patient.setAge(patientDetails.getAge());
-    	patient.setDob(patientDetails.getDob());
-    	patient.setGender(patientDetails.getGender());
-    	patient.setPhone(patientDetails.getPhone());
-    	patient.setLastVisit(patientDetails.getLastVisit());
-    	patient.setVisitAmmount(patientDetails.getVisitAmmount());
-    	
-    	
-    	
-    	
-        final Patient updatedPatient = patientDAO.save(patient);
+
+        Patient patient = patientDAO.getPatientById(patientId);
+
+        patient.setPatientCode(patientDetails.getPatientCode());
+        patient.setPatientName(patientDetails.getPatientName());
+        patient.setVisitAmount(patientDetails.getVisitAmount());
+        patient.setAge(patientDetails.getAge());
+        patient.setDob(patientDetails.getDob());
+        patient.setGender(patientDetails.getGender());
+        patient.setPhone(patientDetails.getPhone());
+        patient.setLastVisit(patientDetails.getLastVisit());
+
+        final Patient updatedPatient = patientDAO.update(patient); // ✅ এখানে update() মেথড ব্যবহার করো
         return ResponseEntity.ok(updatedPatient);
     }
 
     @DeleteMapping("/patient/{id}")
-    public Map<String, Boolean> deleteEmployee(@PathVariable(value = "id") int patientId){
+    public Map<String, Boolean> delete(@PathVariable(value = "id") long patientId){
     	Patient patient = patientDAO.getPatientById(patientId);
     	patientDAO.delete(patient);
         Map<String, Boolean> response = new HashMap<>();

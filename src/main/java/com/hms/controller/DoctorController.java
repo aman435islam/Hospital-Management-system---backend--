@@ -59,7 +59,7 @@ public class DoctorController {
     private DoctorDAO doctorDAO;
 
     @GetMapping("/doctor")
-    public List<Doctor> getAllEmployees() {
+    public List<Doctor> getAllDoctor() {
         return doctorDAO.getAll();
     }
 
@@ -70,12 +70,13 @@ public class DoctorController {
     }
 
     @PostMapping("/doctor")
-    public Doctor createEmployee(@RequestBody Doctor doctor) {
+    public Doctor save(@RequestBody Doctor doctor) {
         return doctorDAO.save(doctor);
     }
 
+    
     @PutMapping("/doctor/{id}")
-    public ResponseEntity<Doctor> updateEmployee(@PathVariable(value = "id") int patientId,
+    public ResponseEntity<Doctor> update(@PathVariable(value = "id") int patientId,
          @Validated @RequestBody Doctor doctorDetails) {
     	Doctor doctor = doctorDAO.getDoctorById(patientId);
     	doctor.setDoctorCode(doctorDetails.getDoctorCode());
@@ -94,7 +95,7 @@ public class DoctorController {
     }
 
     @DeleteMapping("/doctor/{id}")
-    public Map<String, Boolean> deleteEmployee(@PathVariable(value = "id") int doctortId){
+    public Map<String, Boolean> delete(@PathVariable(value = "id") int doctortId){
     	Doctor doctor = doctorDAO.getDoctorById(doctortId);
     	doctorDAO.delete(doctor);
         Map<String, Boolean> response = new HashMap<>();

@@ -8,8 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-@Entity(name = "patient")
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@Entity
 @Table(name = "patient")
 public class Patient {
 	@Id
@@ -23,14 +27,20 @@ public class Patient {
 	@Column(name = "patient_name")
 	private String patientName;
 	
-	@Column(name = "Visit_ammount")
-	private Integer VisitAmmount;
+
+	@Column(name = "visit_amount") 
+	private Integer visitAmount;
+
 
 	@Column(name = "age")
 	private int age;
 
-	@Column(name = "dob")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
 	private Date dob;
+
+//	@Column(name = "dob")
+//	private Date dob;
 
 	@Column(name = "gender")
 	private String gender;
@@ -38,10 +48,12 @@ public class Patient {
 	@Column(name = "phone")
 	private String phone;
 
-	@Column(name = "last_visit")
+//	@Column(name = "last_visit")
+//	private Date lastVisit;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
 	private Date lastVisit;
-	
-	
 	
 	@Column(name = "created_by_code")
     private String createdByCode ;
@@ -61,11 +73,10 @@ public class Patient {
 	@Column(name = "updated_at")
     private Date updatedAt ;
 
-	
-	
 	public long getId() {
 		return id;
 	}
+
 
 	public void setId(long id) {
 		this.id = id;
@@ -87,28 +98,12 @@ public class Patient {
 		this.patientName = patientName;
 	}
 
-	public String getCreatedByCode() {
-		return createdByCode;
+	public Integer getVisitAmount() {
+		return visitAmount;
 	}
 
-	public void setCreatedByCode(String createdByCode) {
-		this.createdByCode = createdByCode;
-	}
-
-	public String getCreatedByName() {
-		return createdByName;
-	}
-
-	public void setCreatedByName(String createdByName) {
-		this.createdByName = createdByName;
-	}
-
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
+	public void setVisitAmount(Integer visitAmount) {
+		this.visitAmount = visitAmount;
 	}
 
 	public int getAge() {
@@ -135,6 +130,7 @@ public class Patient {
 		this.gender = gender;
 	}
 
+	
 	public String getPhone() {
 		return phone;
 	}
@@ -149,6 +145,30 @@ public class Patient {
 
 	public void setLastVisit(Date lastVisit) {
 		this.lastVisit = lastVisit;
+	}
+
+	public String getCreatedByCode() {
+		return createdByCode;
+	}
+
+	public void setCreatedByCode(String createdByCode) {
+		this.createdByCode = createdByCode;
+	}
+
+	public String getCreatedByName() {
+		return createdByName;
+	}
+
+	public void setCreatedByName(String createdByName) {
+		this.createdByName = createdByName;
+	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 
 	public String getUpdatedByCode() {
@@ -175,17 +195,4 @@ public class Patient {
 		this.updatedAt = updatedAt;
 	}
 
-	public Integer getVisitAmmount() {
-		return VisitAmmount;
-	}
-
-	public void setVisitAmmount(Integer visitAmmount) {
-		VisitAmmount = visitAmmount;
-	}
-
-
-
-	
-	
-	
 }
